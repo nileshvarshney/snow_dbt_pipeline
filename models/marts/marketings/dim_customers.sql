@@ -1,4 +1,9 @@
 -- models/marts/dim_customers.sql
+{{
+    config(
+        materialized='view'
+    )
+}}
 with customers as (
     select 
         id,
