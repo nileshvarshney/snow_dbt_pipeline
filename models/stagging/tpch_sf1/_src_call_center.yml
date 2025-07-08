@@ -1,0 +1,37 @@
+version: 2.0.0
+
+sources:
+  - name: call_center_data
+    database: SNOWFLAKE_SAMPLE_DATA
+    schema: TPCDS_SF10TCL
+    tables:
+      - name: CALL_CENTER
+        identifier: CALL_CENTER
+        description: Call center data from TPCDS SF10TCL dataset
+        config:
+          freshness: null
+        columns:
+          - name: cc_call_center_sk 
+            description: Unique identifier for the call_center
+            tests:  
+              - not_null
+              - unique
+      - name: CUSTOMER
+        identifier: CUSTOMER
+        description: Customer data from TPCDS SF10TCL dataset
+        config:
+          freshness: null
+        columns:
+          - name: c_customer_sk
+            description: Unique identifier for the customer
+            tests:
+              - not_null
+              - unique
+      - name: CUSTOMER_ADDRESS
+        identifier: CUSTOMER_ADDRESS
+        description: Customer address data from TPCDS SF10TCL dataset
+        config:
+          freshness: null
+        
+
+        

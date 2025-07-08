@@ -1,0 +1,40 @@
+version: 1.0.0
+models:
+  - name: stg_customers
+    description: Staging model for customers data from TPCH SF1 dataset
+    columns:
+      - name: id
+        description: Unique identifier for the customer
+        tests:
+          - not_null
+          - unique
+      - name: phone_number
+        description: Phone number of the customer
+        tests:
+          - not_null
+  - name: stg_orders
+    description: Staging model for orders data from TPCH SF1 dataset
+    columns:
+      - name: id
+        description: Unique identifier for the order
+        tests:
+          - not_null
+          - unique
+      - name: order_date
+        description: Date when the order was placed
+        tests:
+          - not_null
+      - name: customer_id
+        description: Identifier for the customer who placed the order
+        tests:
+          - not_null
+      - name: order_status
+        description: Status of the order (e.g., 'O', 'F', 'P')
+        tests:
+          - accepted_values:
+              values: ['O', 'F', 'P']
+      - name: order_priority
+        description: Priority of the order (e.g., '1-URGENT', '2-HIGH', '3-MEDIUM', '4-NOT SPECIFIED')
+        tests:
+          - accepted_values:
+              values: ['1-URGENT', '2-HIGH', '3-MEDIUM', '4-NOT SPECIFIED', '5-LOW']

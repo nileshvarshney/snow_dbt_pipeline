@@ -1,0 +1,38 @@
+version: 2.0.0
+
+sources:
+  - name: tpch_sf1_data
+    database: SNOWFLAKE_SAMPLE_DATA
+    schema: TPCH_SF1
+    tables:
+      - name: customer
+        identifier: customer
+        config:
+          freshness: null
+        columns:
+          - name: c_custkey
+            description: Unique identifier for the customer
+            tests:
+              - not_null
+              - unique
+      - name: nation
+        identifier: nation
+        config:
+          freshness: null
+      - name: orders
+        identifier: orders
+        columns:
+          - name: o_orderkey
+            description: Unique identifier for the customer
+            tests:
+              - not_null
+              - unique
+        config:
+          freshness: 
+            warn_after: {count: 100, period: day}
+            error_after: {count: 500, period: day}
+          loaded_at_field: o_orderdate
+      - name: region
+        identifier: region
+        config:
+          freshness: null

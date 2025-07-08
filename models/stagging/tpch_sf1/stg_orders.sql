@@ -9,4 +9,5 @@ SELECT
     o_orderpriority AS order_priority,
     o_shippriority AS ship_priority
 FROM 
-    SNOWFLAKE_SAMPLE_DATA.TPCH_SF1.ORDERS O
+    {{ source('tpch_sf1_data', 'orders') }}
+    
